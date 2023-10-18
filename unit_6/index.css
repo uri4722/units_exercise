@@ -1,0 +1,32 @@
+
+body {
+    background-color: rgb(247, 223, 191);
+}
+
+#game {
+    background-color: rgba(237, 201, 22, 0.595);
+    width: 40%;
+    height: 20rem;
+    margin: auto;
+    margin-top: 100px;
+    text-align: center;
+    border-radius: 30%;
+}
+
+h1 {
+    font-size: 2rem;
+    border: 1px, hsl(84, 100%, 59%), ;
+}
+
+#result {
+    color: rgba(230, 114, 32, 0.784);
+    /* color: rgba(71, 111, 71, 0.784); */
+}
+
+#newGameBtn {
+    width: 70px;
+    height: 50px;
+    color: #6dd36dc8;
+    border: 2px #6dd36dc8 solid;
+    border-radius: 30%;
+}
