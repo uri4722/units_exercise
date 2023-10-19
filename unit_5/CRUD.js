@@ -27,6 +27,7 @@ async function createUser(name, email) {
 async function readUser(name) {
     const users = await loadUsers();
     const user = users.find(user => user.name == name);
+    console.log(user);
 }
 
 async function run() {
