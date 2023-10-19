@@ -34,19 +34,3 @@ async function handelPath(res, path) {
     }
 }
 
-
-// switch (req.url) {
-//     case '/':
-//         return handelPath(res,'./index.html');
-//     case '/raw-html':
-//         return handelPath(res,'./raw.html');
-//     case '/users':
-//         return handelPath(res,'./users.json');
-//     case '/index.css':
-//         return handelPath(res,'./index.css');
-//     case '/index.js':
-//         return handelPath(res,'./index.js');
-//     default:
-//         res.statusCode = 404;
-//         res.end();
-// }
