@@ -10,7 +10,6 @@ async function loadUsers() {
 function isExist(newUser, users) {
     const exist = users.find(user => user.email == newUser.email);
     return exist ? true : false;
-
 }
 
 async function createUser(name, email) {
@@ -24,15 +23,45 @@ async function createUser(name, email) {
         }
     }
 }
-async function readUser(name) {
+async function readUser(id) {
     const users = await loadUsers();
-    const user = users.find(user => user.name == name);
+    const user = users.find(user => user.id === id);
     console.log(user);
 }
+
+async function updateUser(id, name, email) {
+    const users = await loadUsers();
+    const user = users.find(user => user.id === id);
+    if (name) {
+        user.name = name;
+    }
+    if (email) {
+        user.email = email;
+    }
+    await fs.writeFile('./users.json', JSON.stringify(users))
+}
+
+async function deletUser(id) {
+    const users = await loadUsers();
+    const index = users.findIndex(user => user.id === id);
+    console.log(index);
+    users.splice(index, 1);
+    console.log(users);
+
+}
+
 
 async function run() {
     await createUser("uri", "uri@gmail.com");
     await createUser("ben", "ben@gmail.com");
-    readUser('uri');
+
+    // check id in the users.json file and replace them
+
+    // updateUser("id", "Uri")
+    // updateUser("id", null, "Uri@gmail.com")
+    // readUser("id")
+
+    // deletUser("id");
+
 }
 run();
