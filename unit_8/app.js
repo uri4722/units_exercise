@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const baseUrl = "/numbers"
 
+app.use(express.json())
+
 app.get(baseUrl, (req, res) => {
     res.send('success using get')
 });
