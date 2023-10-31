@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.static(path.join(path.dirname(__dirname), 'client', 'build')));
 
 app.get('/', (req, res) => {
-    res.end(database)
+    res.send(database)
 })
 
 app.listen(PORT, () => {
