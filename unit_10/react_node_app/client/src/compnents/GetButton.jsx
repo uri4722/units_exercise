@@ -9,16 +9,19 @@ function GetButton() {
 
     useEffect(() => {
         const fatchData = async () => {
-            const res = await axios.get(`//localhost:3001/`)
-            console.log("123");
-
-            if (res.statusText === "OK") {
-                console.log(res.data);
-                setData(res.data)
+            try {
+                const res = await axios.get(`/`);
+                if (res.statusText === "OK") {
+                    console.log(res);
+                    setData(res.data)
+                }
+            } catch (error) {
+                console.log("error");
             }
+
         }
         fatchData()
-    }, [])
+    })
 
     return (<>
         <button onClick={() => { setGetData(!getData) }}>{getData ? data : "click to get data"}</button>
