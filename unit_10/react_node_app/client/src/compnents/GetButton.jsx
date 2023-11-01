@@ -10,7 +10,7 @@ function GetButton() {
     useEffect(() => {
         const fatchData = async () => {
             try {
-                const res = await axios.get(`/`);
+                const res = await axios.get(`http://localhost:3001/data`);
                 if (res.statusText === "OK") {
                     console.log(res);
                     setData(res.data)
