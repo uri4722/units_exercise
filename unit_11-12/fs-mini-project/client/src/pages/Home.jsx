@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Loader } from "../compnent/Loader";
 import DisplayPath from "../compnent/DisplayPath";
 
-function Home() {
+function Home(props) {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +21,6 @@ function Home() {
 
     useEffect(() => {
         fetchData();
-        console.log(data);
     }, [])
 
 
