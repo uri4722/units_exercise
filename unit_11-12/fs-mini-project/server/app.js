@@ -10,7 +10,16 @@ app.use(cors())
 
 app.get('/files', async (req, res) => {
     console.log("get req");
+    console.log(path.join(__dirname, '/files'));
+
     const ditals = await crtDeitals(path.join(__dirname, '/files'));
+    res.send(ditals);
+})
+app.get('/files/:path', async (req, res) => {
+    console.log("get req");
+    console.log(path.join(__dirname, '/files',req.params.path));
+
+    const ditals = await crtDeitals(path.join(__dirname, '/files',req.params.path));
     res.send(ditals);
 })
 
