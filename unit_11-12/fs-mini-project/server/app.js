@@ -7,7 +7,6 @@ const crtDeitals = require('./function/creatDeitals.js')
 const PORT = process.env.PORT || 3001;
 app.use(cors())
 
-
 app.get('/files', async (req, res) => {
     console.log("get req");
     console.log(path.join(__dirname, '/files'));
@@ -17,9 +16,9 @@ app.get('/files', async (req, res) => {
 })
 app.get('/files/:path', async (req, res) => {
     console.log("get req");
-    console.log(path.join(__dirname, '/files',req.params.path));
+    console.log(path.join(__dirname, '/files', req.params.path));
 
-    const ditals = await crtDeitals(path.join(__dirname, '/files',req.params.path));
+    const ditals = await crtDeitals(path.join(__dirname, '/files', req.params.path));
     res.send(ditals);
 })
 

@@ -6,7 +6,12 @@ function App() {
   return (
     <div className='App'>
       <Routes>
-        <Route path="/files*" element={<Home />} />
+      
+        <Route path="/files/:id" element={<Home />} />
+        <Route path="/files" element={<Home />} />
+        <Route index element={<Home />} />
+
+
       </Routes>
     </div>
   );

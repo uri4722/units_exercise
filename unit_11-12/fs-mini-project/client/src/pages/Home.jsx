@@ -12,7 +12,10 @@ function Home() {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:3001/files');
+            const path = 'http://localhost:3001/files' + (id ? '/' + id : "");
+            console.log(path);
+            const response = await axios.get('http://localhost:3001/files' + (id ? '/' + id : ""));
+
             setData(response.data);
             setIsLoading(false);
         } catch (error) {
@@ -24,10 +27,10 @@ function Home() {
 
     useEffect(() => {
         fetchData();
-    }, [])
-    useEffect(() => {
-        console.log(id);
     }, [id])
+    // useEffect(() => {
+    //     console.log(path);
+    // }, [path])
 
 
     if (isLoading) {
