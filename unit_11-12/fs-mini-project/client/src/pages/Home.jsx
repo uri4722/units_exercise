@@ -2,10 +2,13 @@ import { useEffect, useState } from "react"
 import axios from 'axios'
 import { Loader } from "../compnent/Loader";
 import DisplayPath from "../compnent/DisplayPath";
+import { useParams } from "react-router-dom";
 
-function Home(props) {
+function Home() {
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const { id } = useParams();
+
 
     const fetchData = async () => {
         try {
@@ -22,7 +25,9 @@ function Home(props) {
     useEffect(() => {
         fetchData();
     }, [])
-
+    useEffect(() => {
+        console.log(id);
+    }, [id])
 
 
     if (isLoading) {
