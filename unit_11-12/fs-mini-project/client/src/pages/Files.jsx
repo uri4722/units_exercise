@@ -2,20 +2,19 @@ import { useEffect, useState } from "react"
 import axios from 'axios'
 import { Loader } from "../compnent/Loader";
 import DisplayPath from "../compnent/DisplayPath";
-import { useParams } from "react-router-dom";
+import {  redirect, useLocation } from "react-router-dom";
 
-function Home() {
+
+function Files() {
     const [data, setData] = useState([]);
+    const { pathname } = useLocation();
     const [isLoading, setIsLoading] = useState(true);
-    const { id } = useParams();
-
 
     const fetchData = async () => {
         try {
-            const path = 'http://localhost:3001/files' + (id ? '/' + id : "");
-            console.log(path);
-            const response = await axios.get('http://localhost:3001/files' + (id ? '/' + id : ""));
-
+            console.log("http://localhost:3001" + pathname);
+            const response = await axios.get("http://localhost:3001" + pathname);
+            console.log(response.data);
             setData(response.data);
             setIsLoading(false);
         } catch (error) {
@@ -24,13 +23,14 @@ function Home() {
         }
     };
 
+    // const handleOpen = () => {
+    //     window.open("http://localhost:3001" + pathname);
+    // };
+
 
     useEffect(() => {
         fetchData();
-    }, [id])
-    // useEffect(() => {
-    //     console.log(path);
-    // }, [path])
+    }, [pathname])
 
 
     if (isLoading) {
@@ -40,8 +40,7 @@ function Home() {
     if (!data) {
         return <div>This folder is empty.</div>;
     } else {
-        return <DisplayPath data={data} />
-
+        return pathname.slice(1, 6) === 'files' ? <DisplayPath data={data} /> : <div> {data}</div>;
     }
 
 
@@ -50,4 +49,4 @@ function Home() {
 
 
 
-export default Home 
+export default Files 
