@@ -1,35 +1,74 @@
-.App {
-  text-align: center;
-
+/* Style the outer container */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.loader {
-  margin: auto;
-  margin-top: 10%;
-  border: 16px solid #f3f3f3;
-  /* Light grey */
-  border-top: 16px solid #3498db;
-  /* Blue */
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  animation: spin 2s linear infinite;
+/* Style the list items */
+li {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+/* Style the file/folder container */
+.fileDiv {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 5px;
 }
 
-.fileDiv{
-  background-color: rgb(67, 154, 229)24, 211;
+/* Style the file/folder icon */
+.fileDiv img {
+  width: 24px; /* Adjust the size as needed */
+  height: 24px; /* Adjust the size as needed */
+  margin-right: 10px;
 }
-img {
-  width: 40px;
-  margin: 20px,5px;
+
+/* Style the link to the file/folder */
+.fileDiv a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
 }
+
+/* Style the expand/collapse button */
+.fileDiv div {
+  cursor: pointer;
+  margin-left: auto;
+  font-size: 24px;
+  transform: rotate(0deg); /* Initial arrow direction */
+  transition: transform 0.2s;
+}
+
+/* Style the expanded data */
+.fileDiv div:hover {
+  color: #007bff; /* Change color on hover if desired */
+}
+
+/* Rotate the arrow when data is displayed */
+.fileDiv div.active {
+  transform: rotate(90deg);
+}
+
+/* Style the additional file/folder data */
+.fileDiv div.active + div {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #777;
+  white-space: pre-line; /* Allow line breaks in the text */
+}
+
+/* Style the keys in the data */
+.fileDiv div.active + div::before {
+  content: '\00a0 \2022\00a0'; /* Add a bullet point before each key with a space for line break */
+  color: #333;
+  font-weight: bold;
+  display: block;
+}
+
+
