@@ -7,7 +7,7 @@ function File({ name, isDirectory, size, birthtime }) {
     // console.log(name, isDirectory, size, birthtime);
     const location = useLocation();
     const [displayData, setDisplayData] = useState(false)
-    const dataStr = "file name: " + name + "\nsize: " + size + '\nbirthtime: ' + birthtime;
+    const dataStr = "file name: " + name + "\n size: " + size + '\n birthtime: ' + birthtime;
 
     return <li key={name}>
         <div className="fileDiv">
@@ -21,7 +21,7 @@ function File({ name, isDirectory, size, birthtime }) {
 
             </div>
         </div>
-    </li>
+    </li >
 
 }
 export default File;
