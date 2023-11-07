@@ -4,7 +4,6 @@ import file from "./pic/file.jpg";
 import folder from "./pic/folder.jpg";
 
 function File({ name, isDirectory, size, birthtime }) {
-    // console.log(name, isDirectory, size, birthtime);
     const location = useLocation();
     const [displayData, setDisplayData] = useState(false)
     const dataStr = "file name: " + name + "\n size: " + size + '\n birthtime: ' + birthtime;

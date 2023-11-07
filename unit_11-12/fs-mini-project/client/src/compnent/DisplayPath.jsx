@@ -7,24 +7,26 @@ import { useLocation } from "react-router-dom";
 
 
 
-function DisplayPath({ data }) {
+function DisplayPath({ data, fetchData }) {
     const [folderNameInput, setFolderNameInput] = useState("");
     const [displayInput, setDisplayInput] = useState(false);
+    const [message, setMessage] = useState('');
     const { pathname } = useLocation();
 
     async function addFolder() {
         setDisplayInput(!displayInput);
         if (displayInput) {
-            console.log(folderNameInput);
-            const response = await axios.post("http://localhost:3001" + pathname, folderNameInput);
+            const response = await axios.post("http://localhost:3001" + pathname, { folderName: folderNameInput });
             setFolderNameInput("");
-            console.log(response.data);
+            fetchData();
+            setMessage(response.data);
         }
 
     }
     function handleChange({ target }) {
         setFolderNameInput(target.value)
     }
+
 
     if (data) {
         return <div>
@@ -33,7 +35,7 @@ function DisplayPath({ data }) {
             })}</ul>
             <button onClick={addFolder}>{displayInput ? 'add' : 'add new folder'}</button>
             {displayInput && <input type="text" onChange={handleChange} value={folderNameInput} />}
-
+            <h4 style={{ color: 'green', margin: "30px" }}>{message}</h4>
         </div>
     }
 

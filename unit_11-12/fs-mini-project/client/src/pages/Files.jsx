@@ -11,22 +11,22 @@ function Files() {
     const { pathname } = useLocation();
     const [isLoading, setIsLoading] = useState(true);
 
- 
+    const fetchData = async () => {
+        try {
+            // console.log("http://localhost:3001" + pathname);
+            const response = await axios.get("http://localhost:3001" + pathname);
+            // console.log(response.data);
+            setData(response.data);
+            setIsLoading(false);
+        } catch (error) {
+            console.error(error);
+            setIsLoading(false);
+        }
+    };
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // console.log("http://localhost:3001" + pathname);
-                const response = await axios.get("http://localhost:3001" + pathname);
-                // console.log(response.data);
-                setData(response.data);
-                setIsLoading(false);
-            } catch (error) {
-                console.error(error);
-                setIsLoading(false);
-            }
-        };
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pathname])
 
 
@@ -39,7 +39,7 @@ function Files() {
         return <div>This file/folder is empty.</div>;
     } else {
         // console.log(data);
-        return typeof data === 'object' ? <DisplayPath data={data} /> : <div> {data}</div>;
+        return typeof data === 'object' ? <DisplayPath data={data} fetchData={fetchData} /> : <div> {data}</div>;
     }
 
 
