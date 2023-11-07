@@ -14,6 +14,10 @@ app.get('/files/*', async (req, res) => {
     res.send(ditals);
 })
 
+app.post('/files/*', async (req, res) => {
+    res.send(req.body)
+})
+
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);
 });
