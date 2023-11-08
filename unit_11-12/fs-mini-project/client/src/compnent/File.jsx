@@ -2,16 +2,28 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import file from "./pic/file.jpg";
 import folder from "./pic/folder.jpg";
+import axios from "axios";
 
-function File({ name, isDirectory, size, birthtime }) {
-    const location = useLocation();
+function File({ name, isDirectory, size, birthtime, fetchData }) {
+    const { pathname } = useLocation();
     const [displayData, setDisplayData] = useState(false)
     const dataStr = "file name: " + name + "\n size: " + size + '\n birthtime: ' + birthtime;
+    const handelDeleteFile = async () => {
+        try {
+            console.log(pathname + '/' + name);
+            const response = axios.delete("http://localhost:3001" + pathname + '/' + name);
+            // console.log(response.data);
 
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
     return <li key={name}>
         <div className="fileDiv">
             <img src={isDirectory ? folder : file} alt="file_img" />
-            <Link to={isDirectory ? location.pathname + "/" + name : "/file" + location.pathname + "/" + name}>{name}</Link>
+            <button onClick={handelDeleteFile}>Delete</button>
+            <Link to={isDirectory ? pathname + "/" + name : "/file" + pathname + "/" + name}>{name}</Link>
             <div onClick={() => setDisplayData(!displayData)}>
                 {displayData ? "🔼" : "🔽"}
                 {displayData ? (

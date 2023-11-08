@@ -30,7 +30,6 @@ function Files() {
     }, [pathname])
 
 
-
     if (isLoading) {
         return <Loader />
     }
@@ -39,10 +38,8 @@ function Files() {
         return <div>This file/folder is empty.</div>;
     } else {
         // console.log(data);
-        return typeof data === 'object' ? <DisplayPath data={data} fetchData={fetchData} /> : <div> {data}</div>;
+        return typeof data === 'object' ? <DisplayPath data={data} setData={setData} fetchData={fetchData} /> : <div> {data}</div>;
     }
-
-
 
 }
 
