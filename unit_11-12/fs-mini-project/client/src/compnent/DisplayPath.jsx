@@ -15,7 +15,7 @@ function DisplayPath({ data, setData, fetchData }) {
     async function addFile() {
         setDisplayFileInput(!displayInputFile);
         if (displayInputFile) {
-            const response = await axios.post("http://localhost:3001/file" + pathname, { folderName: folderNameInput });
+            const response = await axios.post("http://localhost:3001/static" + pathname, { folderName: folderNameInput });
             // setData([...data, {
             //     name: folderNameInput,
             //     birthtime: response.data.birthtime,

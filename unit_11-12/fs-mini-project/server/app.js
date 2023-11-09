@@ -8,8 +8,9 @@ const PORT = process.env.PORT || 3001;
 app.use(cors())
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, 'files')));
 
-app.use("/file", express.static(path.join(__dirname)));
+
 
 app.get('/files*', async (req, res) => {
     console.log("get req start");
@@ -20,18 +21,28 @@ app.get('/files*', async (req, res) => {
 
 app.post('/files*', async (req, res) => {
     console.log("get post start");
-    await fs.mkdir(path.join(__dirname, req.path, req.body.folderName));
-    const stat = await fs.stat(path.join(__dirname, req.path, req.body.folderName))
-    res.statusCode = 201;
-    res.send(stat)
+    if (req.body.folderName) {
+        await fs.mkdir(path.join(__dirname, req.path, req.body.folderName));
+        const stat = await fs.stat(path.join(__dirname, req.path, req.body.folderName))
+        res.statusCode = 201;
+        res.send(stat)
+    } else {
+        console.log("get post file start");
+        console.log("log " + path.join(__dirname, req.path));
+        await fs.appendFile(path.join(__dirname, req.path), "");
+        const stat = await fs.stat(path.join(__dirname, req.path))
+        res.statusCode = 201;
+        res.send(stat)
+    }
 })
-app.post('/file/*', async (req, res) => {
-    console.log("get post file start");
-    await fs.appendFile(path.join(__dirname, req.path, req.body.folderName),"");
-    // const stat = await fs.stat(path.join(__dirname, req.path, req.body.folderName))
-    res.statusCode = 201;
-    res.send()
-})
+// app.post('/file/*', async (req, res) => {
+//     console.log("get post file start");
+//     console.log("log " + path.join(__dirname, req.path));
+//     await fs.appendFile(path.join(__dirname, req.path), "");
+//     // const stat = await fs.stat(path.join(__dirname, req.path, req.body.folderName))
+//     res.statusCode = 201;
+//     res.send()
+// })
 
 app.delete('/files*', async (req, res) => {
     console.log("get delete start");
