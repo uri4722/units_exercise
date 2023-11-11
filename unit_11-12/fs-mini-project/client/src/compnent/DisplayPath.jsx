@@ -15,15 +15,15 @@ function DisplayPath({ data, setData, fetchData }) {
     async function addFile() {
         setDisplayFileInput(!displayInputFile);
         if (displayInputFile) {
-            const response = await axios.post("http://localhost:3001/static" + pathname, { folderName: folderNameInput });
-            // setData([...data, {
-            //     name: folderNameInput,
-            //     birthtime: response.data.birthtime,
-            //     isDirectory: true,
-            //     size: response.data.size
-            // }])
+            const response = await axios.post("http://localhost:3001" + pathname + "/" + folderNameInput);
+            setData([...data, {
+                name: folderNameInput,
+                birthtime: response.data.birthtime,
+                isDirectory: false,
+                size: response.data.size
+            }])
             console.log(response.data);
-            // setMessage(folderNameInput + " " + response.statusText);
+            setMessage(folderNameInput + " " + response.statusText);
             setFolderNameInput("");
         }
     }

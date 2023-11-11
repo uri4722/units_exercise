@@ -28,21 +28,13 @@ app.post('/files*', async (req, res) => {
         res.send(stat)
     } else {
         console.log("get post file start");
-        console.log("log " + path.join(__dirname, req.path));
         await fs.appendFile(path.join(__dirname, req.path), "");
         const stat = await fs.stat(path.join(__dirname, req.path))
         res.statusCode = 201;
         res.send(stat)
     }
 })
-// app.post('/file/*', async (req, res) => {
-//     console.log("get post file start");
-//     console.log("log " + path.join(__dirname, req.path));
-//     await fs.appendFile(path.join(__dirname, req.path), "");
-//     // const stat = await fs.stat(path.join(__dirname, req.path, req.body.folderName))
-//     res.statusCode = 201;
-//     res.send()
-// })
+
 
 app.delete('/files*', async (req, res) => {
     console.log("get delete start");
