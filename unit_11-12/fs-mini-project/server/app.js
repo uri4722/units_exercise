@@ -38,7 +38,6 @@ app.post('/files*', async (req, res) => {
 
 app.delete('/files*', async (req, res) => {
     console.log("get delete start");
-    console.log(path.join(__dirname, req.path));
     await fs.rm(path.join(__dirname, req.path), { recursive: true });
     res.statusCode = 200;
     res.send('the delete was successful')

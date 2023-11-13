@@ -5,7 +5,7 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 
-function DisplayPath({ data, setData, fetchData }) {
+function DisplayPath({ data, setData }) {
     const [folderNameInput, setFolderNameInput] = useState("");
     const [displayInput, setDisplayInput] = useState(false);
     const [displayInputFile, setDisplayFileInput] = useState(false);
@@ -52,7 +52,7 @@ function DisplayPath({ data, setData, fetchData }) {
     if (data) {
         return <div>
             <ul>{data.map(file => {
-                return <File {...file} key={file.name} fetchData={fetchData} />
+                return <File {...file} data={data} key={file.name} setData={setData} setMessage={setMessage} />
             })}</ul>
             <button onClick={addFolder}>{displayInput ? 'add' : 'add new folder'}</button>
             <button onClick={addFile}>{displayInputFile ? 'add' : 'add new File'}</button>

@@ -4,16 +4,19 @@ import file from "./pic/file.jpg";
 import folder from "./pic/folder.jpg";
 import axios from "axios";
 
-function File({ name, isDirectory, size, birthtime, fetchData }) {
+function File({ name, isDirectory, size, birthtime, data, setData, setMessage }) {
     const { pathname } = useLocation();
     const [displayData, setDisplayData] = useState(false)
     const dataStr = "file name: " + name + "\n size: " + size + '\n birthtime: ' + birthtime;
     const handelDeleteFile = async () => {
         try {
             console.log(pathname + '/' + name);
-            const response = axios.delete("http://localhost:3001" + pathname + '/' + name);
+            const response = await axios.delete("http://localhost:3001" + pathname + '/' + name);
             // console.log(response.data);
-
+            console.log(name);
+            const updateData = data.filter((file) => file.name !== name);
+            setMessage(name + "  has been deleted successfully")
+            setData(updateData);
         } catch (error) {
             console.error(error);
         }

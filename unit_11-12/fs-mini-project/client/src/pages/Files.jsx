@@ -37,8 +37,7 @@ function Files() {
     if (!data) {
         return <div>This file/folder is empty.</div>;
     } else {
-        // console.log(data);
-        return typeof data === 'object' ? <DisplayPath data={data} setData={setData} fetchData={fetchData} /> : <div> {data}</div>;
+        return typeof data === 'object' ? <DisplayPath data={data} setData={setData} /> : <div> {data}</div>;
     }
 
 }
