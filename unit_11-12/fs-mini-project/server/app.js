@@ -13,6 +13,7 @@ app.use(express.static(path.join(__dirname)));
 
 
 
+
 app.get(BaseURL, async (req, res) => {
     console.log("get req start");
     console.log(path.join(__dirname, req.path));
