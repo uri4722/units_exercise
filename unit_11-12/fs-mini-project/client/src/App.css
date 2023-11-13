@@ -5,6 +5,12 @@ ul {
   margin: 0;
 }
 
+button {
+  margin: 5px;
+  float: left;
+  border: 1px solid black;
+}
+
 /* Style the list items */
 li {
   display: flex;
@@ -23,8 +29,10 @@ li {
 
 /* Style the file/folder icon */
 .fileDiv img {
-  width: 24px; /* Adjust the size as needed */
-  height: 24px; /* Adjust the size as needed */
+  width: 24px;
+  /* Adjust the size as needed */
+  height: 24px;
+  /* Adjust the size as needed */
   margin-right: 10px;
 }
 
@@ -40,13 +48,15 @@ li {
   cursor: pointer;
   margin-left: auto;
   font-size: 24px;
-  transform: rotate(0deg); /* Initial arrow direction */
+  transform: rotate(0deg);
+  /* Initial arrow direction */
   transition: transform 0.2s;
 }
 
 /* Style the expanded data */
 .fileDiv div:hover {
-  color: #007bff; /* Change color on hover if desired */
+  color: #007bff;
+  /* Change color on hover if desired */
 }
 
 /* Rotate the arrow when data is displayed */
@@ -55,20 +65,20 @@ li {
 }
 
 /* Style the additional file/folder data */
-.fileDiv div.active + div {
+.fileDiv div.active+div {
   display: block;
   margin-top: 5px;
   font-size: 14px;
   color: #777;
-  white-space: pre-line; /* Allow line breaks in the text */
+  white-space: pre-line;
+  /* Allow line breaks in the text */
 }
 
 /* Style the keys in the data */
-.fileDiv div.active + div::before {
-  content: '\00a0 \2022\00a0'; /* Add a bullet point before each key with a space for line break */
+.fileDiv div.active+div::before {
+  content: '\00a0 \2022\00a0';
+  /* Add a bullet point before each key with a space for line break */
   color: #333;
   font-weight: bold;
   display: block;
 }
-
-
